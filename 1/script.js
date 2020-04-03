@@ -1,96 +1,122 @@
-var doing = false;
-let status = document.getElementById("status")
-var info = true;
-function doSlot(){
-	if (doing){return null;}
-	doing = true;
-	var numChanges = randomInt(1,4)*7
-	var numeberSlot1 = numChanges+randomInt(1,7)
-	var numeberSlot2 = numChanges+2*7+randomInt(1,7)
-	var numeberSlot3 = numChanges+4*7+randomInt(1,7)
-	var i1 = 0;
-	var i2 = 0;
-	var i3 = 0;
-	status.innerHTML = "SPINNING"
-	slot1 = setInterval(spin1, 50);
-	slot2 = setInterval(spin2, 50);
-    slot3 = setInterval(spin3, 50);
-    
-	function spin1(){
-		i1++;
-		if (i1>=numeberSlot1){
-			coin[0].play()
-			clearInterval(slot1);
-			return null;
-		}
-		slotTile = document.getElementById("slot1");
-		if (slotTile.className=="a7"){
-			slotTile.className = "a0";
-		}
-		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-    }
-    
+// déclarer la variable misededepart
+var misedepart = 100;
 
-	function spin2(){
-		i2++;
-		if (i2>=numeberSlot2){
-			coin[1].play()
-			clearInterval(slot2);
-			return null;
-		}
-		slotTile = document.getElementById("slot2");
-		if (slotTile.className=="a7"){
-			slotTile.className = "a0";
-		}
-		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-    }
-    
+		
+	function start(){
+	
+		
+		mise = prompt("Combien misez vous ?","");
+		
+			while ((mise=="") || (mise==0)){ // si aucune mise ou la mise vaut 0, relancer la demande
+			mise = prompt("Combien misez vous ?","");
+			}
+			
+			while (mise>misedepart){ // si la mise est superieur aux montant
+			mise = prompt("Vous ne possedez que "+misedepart+" €","");
+			}
+		document.getElementById("description2").innerHTML = mise;
 
-	function spin3(){
-		i3++;
-		if (i3>=numeberSlot3){
-			coin[2].play()
-			clearInterval(slot3);
-			testWin();
-			return null;
+		img1 = Math.ceil(Math.random() * 4); // création du chiffre aléatoire pour les 3 slots
+		img2 = Math.ceil(Math.random() * 4); // création du chiffre aléatoire pour les 3 slots
+		img3 = Math.ceil(Math.random() * 4); // création du chiffre aléatoire pour les 3 slots
+         
+        
+
+
+	//  les images 
+	cerise = ("<img src='images/cerise.jpg' width='100px' height='100px' />"); 	//cerise
+	cloche = ("<img src='images/cloche.jpg' width='100px' height='100px' />"); 	//cloche
+	etoile = ("<img src='images/roulette.jpg' width='100px' height='100px' />");		//etoile
+	euro = ("<img src='images/argent.jpg' width='100px' height='100px' />");		//euro
+                
+
+
+
+    // ici switch nous permet de savoir l'ordre des images dans chaque slot, en sachant qu'il y a 3 slot
+			switch (img1) 
+			{
+			case 1:
+			document.getElementById("slot1").innerHTML = cerise;
+			break;
+			case 2:
+			document.getElementById("slot1").innerHTML = cloche;
+			break;
+			case 3:
+			document.getElementById("slot1").innerHTML = etoile;
+			break;
+			case 4:
+			document.getElementById("slot1").innerHTML = euro;
+			break;
+			}
+			
+			switch (img2) 
+			{
+			case 1:
+			document.getElementById("slot2").innerHTML = cerise;
+			break;
+			case 2:
+			document.getElementById("slot2").innerHTML = cloche;
+			break;
+			case 3:
+			document.getElementById("slot2").innerHTML = etoile;
+			break;
+			case 4:
+			document.getElementById("slot2").innerHTML = euro;
+			break;
+			}
+			
+			switch (img3) 
+			{
+			case 1:
+			document.getElementById("slot3").innerHTML = cerise;
+			break;
+			case 2:
+			document.getElementById("slot3").innerHTML = cloche;
+			break;
+			case 3:
+			document.getElementById("slot3").innerHTML = etoile;
+			break;
+			case 4:
+			document.getElementById("slot3").innerHTML = euro;
+			break;
+			}
+        
+            
+            // les conditions, et mises 
+		function somme() {
+			if ((img1==4) && (img2==4) && (img3==4)) { // 3euros affiché
+			document.getElementById("description").innerHTML = ((mise*20)+(misedepart))+" €";
+			document.getElementById("absolute").innerHTML = "tu gagne 20 fois le montant" ;
+			}
+			
+			else if ((img1==2) && (img2==2) && (img3==2)) { // 3 cloche affiché
+			document.getElementById("description").innerHTML = ((mise*15)+(misedepart))+" €";
+			document.getElementById("absolute").innerHTML = "tu gagne 15 fois le montant" ;
+			}
+			
+			else if ((img1==3) && (img2==3) && (img3==3)) { // 3 étoiles affiché
+			document.getElementById("description").innerHTML = ((mise*10)+(misedepart))+" €";
+			document.getElementById("absolute").innerHTML = "tu gagne 10 fois le montant" ;
+			}
+
+			else if ((img1==1) && (img2==1) && (img3==1)) { // 3 cerises affiché
+			document.getElementById("description").innerHTML = ((mise*5)+(misedepart))+" €";
+			document.getElementById("absolute").innerHTML = "tu gagne 5 fois le montant" ;
+			}
+			//dans le cas des 2 euros affiché :
+			else if ((img1==4) && (img2==4) && (img3==2 || 3 || 1) || (img2==4) && (img3==4) && (img1==2 || 3 || 1) || (img3==4) && (img1==4) && (img2==2 || 3 || 1)){ 
+			document.getElementById("description").innerHTML = ((mise*2)+(misedepart))+" €";
+			document.getElementById("absolute").innerHTML = "tu gagne 2 fois le montant" ;
+			}
+			
+			else {
+			document.getElementById("description").innerHTML = ((misedepart)-mise)+" €";
+			document.getElementById("absolute").innerHTML = "tu as PERDU !!!" ;
+			
+			}
+	
+		
 		}
-		slotTile = document.getElementById("slot3");
-		if (slotTile.className=="a7"){
-			slotTile.className = "a0";
-		}
-		sound++;
-		if (sound==spin.length){
-			sound=0;
-		}
-		spin[sound].play();
-		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+		somme();
+
 	}
-}
-
-
-function testWin(){
-	var slot1 = document.getElementById("slot1").className
-	var slot2 = document.getElementById("slot2").className
-	var slot3 = document.getElementById("slot3").className
-	if (((slot1 == slot2 && slot2 == slot3) ||
-		(slot1 == slot2 && slot3 == "a7") ||
-		(slot1 == slot3 && slot2 == "a7") ||
-		(slot2 == slot3 && slot1 == "a7") ||
-		(slot1 == slot2 && slot1 == "a7") ||
-		(slot1 == slot3 && slot1 == "a7") ||
-		(slot2 == slot3 && slot2 == "a7") ) && !(slot1 == slot2 && slot2 == slot3 && slot1=="a7")){
-		status.innerHTML = "YOU WIN!";
-		win.play();
-	}else{
-		status.innerHTML = "YOU LOSE!"
-		lose.play();
-	}
-	doing = false;
-}
-
-
-function randomInt(min, max){
-	return Math.floor((Math.random() * (max-min+1)) + min);
-}
-
-

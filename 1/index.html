@@ -1,32 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" href="style.css">
-    <title>slot machine</title>
+    <title>Essaie</title>
 </head>
+<body>
 
-    <body>
-        <main>
-            <section id="status">WELCOME!</section>
-            <section id="Slots">
-                <div id="slot1" class="a1"></div>
-                <div id="slot2" class="a1"></div>
-                <div id="slot3" class="a1"></div>
-            </section>
-            <section onclick="doSlot()" id="Gira">JOUER !</section>
-            <section id="options">
-                <img src="res/icons/audioOn.png" id="audio" class="option" onclick="toggleAudio()" />
-            </section>
-        </main>
-        <section id="info">
-            <h3>Come si Gioca?</h3>
-            <p>Tenta la tua fortuna premendo il bottone! Il Jolly vale l'elemento mancante per vincere. Tre elementi uguali e vinici! Ma attenzione, non prendere tre Jolly o perderai!</p>
-            <h3>Licenza</h3>
-            <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licenza Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>.</p>
-        </section>
+        
+
+<div id="co">
+
+        <section id="status">MACHINE À SOUS</section>
+     
+
+    <!-- affichage résultat -->
+     <div class="res">
+        <div id="montant">
+     
+                <div id="mise">
+                    <font id="description">
+                    </font>         
+        </div>
+
+
+        <div id="montant2">
+                <div id="total">
+                <font id="description2"></font><br/>
+                </div>
+                </div>
+                
+                <div id="absolute">
+                </div>
+        </div>
+</div>
+
+
+
+<!-- Header -->
+<div id="header"></div>
+
+<!-- Slot -->
+<div id="slot">
+
+<!-- Premier slot -->
+<div id="slot1">   
+</div>
+
+<div id="slot3">
+</div>
+
+<div id="slot2">
+</div>
+
+
+<!-- Fin des 3 slots -->
+</div>
+
+<!-- bouton jouer  -->
+<div id="bouton"><input type="button" value="Jouer" onClick="start();"/></div>
+</div>
+
+
+
+
+</div>
+<!-- Fin du document -->
+<script type="text/javascript" src="script.js"></script>
+
 </body>
 </html>
